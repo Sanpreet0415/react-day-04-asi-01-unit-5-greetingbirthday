@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Greeting Cards</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const GreetingCard = ({ greeting, name }) => {
+      return (
+        <div style={styles.card}>
+          <h2>{greeting}</h2>
+          <p>{name}</p>
+        </div>
+      );
+    };
+
+    const App = () => {
+      const greetingCards = [
+        { greeting: 'Happy Birthday', name: 'John Doe' },
+        { greeting: 'Congratulations', name: 'Jane Smith' },
+        { greeting: 'Happy Anniversary', name: 'Alex Johnson' },
+      ];
+
+      return (
+        <div style={styles.container}>
+          {greetingCards.map((card, index) => (
+            <GreetingCard key={index} greeting={card.greeting} name={card.name} />
+          ))}
+        </div>
+      );
+    };
+
+    const styles = {
+      card: {
+        border: '1px solid #ddd',
+        borderRadius: '8px',
+        padding: '20px',
+        margin: '10px',
+        textAlign: 'center',
+        backgroundColor: '#f9f9f9',
+        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+      },
+      container: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        padding: '20px',
+      }
+    };
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>
